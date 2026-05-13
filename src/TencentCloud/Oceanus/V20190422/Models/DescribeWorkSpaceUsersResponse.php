@@ -18,26 +18,19 @@ namespace TencentCloud\Oceanus\V20190422\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * CheckSavepoint返回参数结构体
+ * DescribeWorkSpaceUsers返回参数结构体
  *
- * @method string getSerialId() 获取<p>资源 id</p>
- * @method void setSerialId(string $SerialId) 设置<p>资源 id</p>
- * @method integer getSavepointStatus() 获取<p>1=可用，2=不可用</p>
- * @method void setSavepointStatus(integer $SavepointStatus) 设置<p>1=可用，2=不可用</p>
+ * @method array getRoleAuths() 获取空间用户列表
+ * @method void setRoleAuths(array $RoleAuths) 设置空间用户列表
  * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
-class CheckSavepointResponse extends AbstractModel
+class DescribeWorkSpaceUsersResponse extends AbstractModel
 {
     /**
-     * @var string <p>资源 id</p>
+     * @var array 空间用户列表
      */
-    public $SerialId;
-
-    /**
-     * @var integer <p>1=可用，2=不可用</p>
-     */
-    public $SavepointStatus;
+    public $RoleAuths;
 
     /**
      * @var string 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -45,8 +38,7 @@ class CheckSavepointResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param string $SerialId <p>资源 id</p>
-     * @param integer $SavepointStatus <p>1=可用，2=不可用</p>
+     * @param array $RoleAuths 空间用户列表
      * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -62,12 +54,13 @@ class CheckSavepointResponse extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("SerialId",$param) and $param["SerialId"] !== null) {
-            $this->SerialId = $param["SerialId"];
-        }
-
-        if (array_key_exists("SavepointStatus",$param) and $param["SavepointStatus"] !== null) {
-            $this->SavepointStatus = $param["SavepointStatus"];
+        if (array_key_exists("RoleAuths",$param) and $param["RoleAuths"] !== null) {
+            $this->RoleAuths = [];
+            foreach ($param["RoleAuths"] as $key => $value){
+                $obj = new RoleAuth();
+                $obj->deserialize($value);
+                array_push($this->RoleAuths, $obj);
+            }
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {
